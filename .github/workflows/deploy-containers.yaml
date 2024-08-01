@@ -19,5 +19,5 @@ jobs:
           workload_identity_provider: ${{ secrets.GOOGLE_CLOUD_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.GOOGLE_CLOUD_OIDC_ACCOUNT }}
 
-      # プライベートな GCS バケットを読み取ってみる
-      - run: gcloud artifacts repositories list
+      - run: gcloud auth configure-docker asia-northeast1-docker.pkg.dev
+
