@@ -2,6 +2,10 @@ locals {
   roles_for_oidc_iam = ["roles/artifactregistry.writer", "roles/run.developer"]
 }
 
+data "google_project" "project" {
+}
+
+
 resource "google_service_account" "github_actions" {
   account_id = "deploy-cloud-run-job-example"
 }
