@@ -5,7 +5,7 @@ locals {
     default = {
       tf_resource_key = "free_word_company_search"
       name            = "free-word-company-search"
-      image           = google_artifact_registry_repository.google_artifact_registry_repository.default.id
+      image           = google_artifact_registry_repository.default.id
       envs = {
         _1 = {
           name  = "GCP_PROJECT"
