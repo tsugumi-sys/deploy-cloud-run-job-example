@@ -31,5 +31,5 @@ jobs:
       - run: docker build -t ${CONTAINER_NAME} .
       - run: docker tag ${CONTAINER_NAME}:latest ${REPOSITORY_NAME}/${CONTAINER_NAME}:latest
       - run: docker push ${REPOSITORY_NAME}/${CONTAINER_NAME}:latest
-      - run: gcloud run deploy ${SERVICE} --image ${REPOSITORY_NAME}/${CONTAINER_NAME}:latest
+      - run: gcloud run deploy ${JOB_NAME} --image ${REPOSITORY_NAME}/${CONTAINER_NAME}:latest
 
