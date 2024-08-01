@@ -43,3 +43,8 @@ resource "google_project_iam_member" "github_actions_iam_workload_identity_user"
   member  = "serviceAccount:${google_service_account.github_actions.email}"
 }
 
+resource "google_artifact_registry_repository" "oc2_data" {
+  location      = "asia-northeast1"
+  repository_id = "deploy-cloud-run-job-example"
+  format        = "DOCKER"
+}
