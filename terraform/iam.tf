@@ -38,7 +38,7 @@ resource "google_service_account_iam_member" "github_actions_iam_workload_identi
 resource "google_project_iam_member" "github_actions_iam_workload_identity_user" {
   for_each = toset(local.roles_for_oidc_iam)
 
-  project = data.google_project.id
+  project = data.google_project.project.id
   role    = each.value
   member  = "serviceAccount:${google_service_account.github_actions.email}"
 }
