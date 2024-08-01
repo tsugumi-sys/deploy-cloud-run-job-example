@@ -1,6 +1,6 @@
 locals {
   location           = "asia-northeast1"
-  roles_for_oidc_iam = ["roles/artifactregistry.writer", "roles/run.developer", "iroles/iam.serviceAccountUser"]
+  roles_for_oidc_iam = ["roles/artifactregistry.writer", "roles/run.developer", "roles/iam.serviceAccountUser"]
   cloud_run_jobs_config = {
     sample_job = {
       tf_resource_key = "sample_job"
