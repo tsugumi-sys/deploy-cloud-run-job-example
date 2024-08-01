@@ -51,6 +51,7 @@ def random_failure(rate):
 
 # Start script
 if __name__ == "__main__":
+    print("Helloooooooooooo")
     try:
         main(SLEEP_MS, FAIL_RATE)
     except Exception as err:
