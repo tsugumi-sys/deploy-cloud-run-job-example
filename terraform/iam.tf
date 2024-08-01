@@ -3,7 +3,7 @@ locals {
 }
 
 resource "google_service_account" "github_actions" {
-  account_id = "deploy_cloud_run_job_example"
+  account_id = "deploy-cloud-run-job-example"
 }
 
 resource "google_iam_workload_identity_pool" "github_actions" {
