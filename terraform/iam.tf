@@ -2,9 +2,9 @@ locals {
   location           = "asia-northeast1"
   roles_for_oidc_iam = ["roles/artifactregistry.writer", "roles/run.developer"]
   cloud_run_jobs_config = {
-    default = {
-      tf_resource_key = "free_word_company_search"
-      name            = "free-word-company-search"
+    sample_job = {
+      tf_resource_key = "sample_job"
+      name            = "sample-job"
       image           = "asia-northeast1-docker.pkg.dev/hobby-383808/deploy-cloud-run-job-example/sample-job:latest"
       envs = {
         _1 = {
