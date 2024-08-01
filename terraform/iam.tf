@@ -7,11 +7,11 @@ resource "google_service_account" "github_actions" {
 }
 
 resource "google_iam_workload_identity_pool" "github_actions" {
-  workload_identity_pool_id = "deploy_cloud_run_job_example"
+  workload_identity_pool_id = "deploy-cloud-run-job-example"
 }
 
 resource "google_iam_workload_identity_pool_provider" "github_actions" {
-  workload_identity_pool_provider_id = "deploy_cloud_run_job_example"
+  workload_identity_pool_provider_id = "github"
   workload_identity_pool_id          = google_iam_workload_identity_pool.github_actions.workload_identity_pool_id
 
   oidc {
