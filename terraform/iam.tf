@@ -1,5 +1,23 @@
 locals {
+  location           = "asia-northeast1"
   roles_for_oidc_iam = ["roles/artifactregistry.writer", "roles/run.developer"]
+  cloud_run_jobs_config = {
+    default = {
+      tf_resource_key = "free_word_company_search"
+      name            = "free-word-company-search"
+      image           = google_artifact_registry_repository.google_artifact_registry_repository.default.id
+      envs = {
+        _1 = {
+          name  = "GCP_PROJECT"
+          value = data.google_project.project.name
+        }
+        _2 = {
+          name  = "GCP_LOCATION"
+          value = local.location
+        }
+      }
+    }
+  }
 }
 
 data "google_project" "project" {
@@ -43,8 +61,32 @@ resource "google_project_iam_member" "github_actions_iam_workload_identity_user"
   member  = "serviceAccount:${google_service_account.github_actions.email}"
 }
 
-resource "google_artifact_registry_repository" "oc2_data" {
+resource "google_artifact_registry_repository" "default" {
   location      = "asia-northeast1"
   repository_id = "deploy-cloud-run-job-example"
   format        = "DOCKER"
+}
+
+resource "google_cloud_run_v2_job" "default" {
+  for_each = local.cloud_run_jobs_config
+
+  name     = each.value.name
+  location = var.location
+
+  template {
+    template {
+      containers {
+        image = each.value.image
+        # gcp projcet, gcp location, vertex search index name
+        dynamic "env" {
+          for_each = each.value.envs
+
+          content {
+            name  = env.value.name
+            value = env.value.value
+          }
+        }
+      }
+    }
+  }
 }
