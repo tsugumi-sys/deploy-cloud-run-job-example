@@ -71,7 +71,7 @@ resource "google_cloud_run_v2_job" "default" {
   for_each = local.cloud_run_jobs_config
 
   name     = each.value.name
-  location = var.location
+  location = local.location
 
   template {
     template {
