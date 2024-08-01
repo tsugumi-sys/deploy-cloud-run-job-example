@@ -5,7 +5,7 @@ locals {
     default = {
       tf_resource_key = "free_word_company_search"
       name            = "free-word-company-search"
-      image           = google_artifact_registry_repository.default.id
+      image           = "asia-northeast1-docker.pkg.dev/hobby-383808/deploy-cloud-run-job-example/sample-job:latest"
       envs = {
         _1 = {
           name  = "GCP_PROJECT"
