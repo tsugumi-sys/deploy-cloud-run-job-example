@@ -6,6 +6,7 @@ on:
       - main
 
 env:
+  GCP_REGION: asia-northeast1
   JOB_NAME: sample-job
   CONTAINER_NAME: sample-job
   REPOSITORY_NAME: asia-northeast1-docker.pkg.dev/hobby-383808/deploy-cloud-run-job-example
@@ -31,5 +32,5 @@ jobs:
       - run: docker build -t ${CONTAINER_NAME} .
       - run: docker tag ${CONTAINER_NAME}:latest ${REPOSITORY_NAME}/${CONTAINER_NAME}:latest
       - run: docker push ${REPOSITORY_NAME}/${CONTAINER_NAME}:latest
-      - run: gcloud run deploy ${SERVICE} --image ${REPOSITORY_NAME}/${CONTAINER_NAME}:latest
+      - run: gcloud run deploy ${SERVICE} --image ${REPOSITORY_NAME}/${CONTAINER_NAME}:latest --region ${REGION}
 
