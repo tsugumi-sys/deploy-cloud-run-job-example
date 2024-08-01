@@ -31,4 +31,4 @@ jobs:
       - run: gcloud auth configure-docker asia-northeast1-docker.pkg.dev
       - run: docker build -t ${CONTAINER_NAME} .
       - run: docker tag ${CONTAINER_NAME}:latest ${REPOSITORY_NAME}/${CONTAINER_NAME}:latest
-      - run: gcloud run deploy ${SERVICE} --image ${REPOSITORY_NAME}/${CONTAINER_NAME}:latest --region ${REGION}
+      - run: gcloud run deploy ${SERVICE} --image ${REPOSITORY_NAME}/${CONTAINER_NAME}:latest --region ${GCP_REGION}
