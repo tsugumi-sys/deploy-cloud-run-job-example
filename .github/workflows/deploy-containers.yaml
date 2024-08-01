@@ -1,0 +1,22 @@
+iname: google cloud
+
+on:
+  push:
+
+jobs:
+  gsls:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: google-github-actions/auth@v2
+        with:
+          token_format: "access_token"
+          workload_identity_provider: {{ secrets.GOOGLE_CLOUD_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: {{ secrets.GOOGLE_CLOUD_OIDC_ACCOUNT }}
+          audience: "https://github.com/tsugumi-sys"
+
+      # プライベートな GCS バケットを読み取ってみる
+      - run: gcloud artifacts repositories list
