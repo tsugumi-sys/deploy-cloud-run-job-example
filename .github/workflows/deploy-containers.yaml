@@ -14,7 +14,7 @@ env:
 jobs:
   gsls:
     runs-on: ubuntu-latest
-    environment:: production
+    environment: production
     defaults:
       run:
         working-directory: jobs/python/sample-job
