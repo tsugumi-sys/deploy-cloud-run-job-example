@@ -29,7 +29,7 @@ jobs:
           service_account: ${{ secrets.google_cloud_oidc_account }}
 
       - run: gcloud auth configure-docker asia-northeast1-docker.pkg.dev
-      - run: docker build -t ${CONTAINER_NAME} .
+      - run: docker build --build-arg="MODULE_PATH_TO_EXECUTE=main" -t ${CONTAINER_NAME} .
       - run: docker tag ${CONTAINER_NAME}:latest ${REPOSITORY_NAME}/${CONTAINER_NAME}:latest
       - run: docker push ${REPOSITORY_NAME}/${CONTAINER_NAME}:latest
       - run: gcloud run jobs deploy ${JOB_NAME} --image ${REPOSITORY_NAME}/${CONTAINER_NAME}:latest --region ${GCP_REGION}
