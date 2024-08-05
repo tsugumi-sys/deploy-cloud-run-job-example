@@ -24,16 +24,11 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - run: echo ${{ secrets.GOOGLE_CLOUD_WORKLOAD_IDENTITY_PROVIDER }} | wc -c
-      - run: echo ${{ secrets.GOOGLE_CLOUD_OIDC_ACCOUNT }} | wc -c
-      - run: echo ${{ vars.GOOGLE_CLOUD_WORKLOAD_IDENTITY_PROVIDER }} | wc -c
-      - run: echo ${{ vars.GOOGLE_CLOUD_OIDC_ACCOUNT }} | wc -c
-
       - uses: google-github-actions/auth@v2
         with:
           token_format: "access_token"
-          workload_identity_provider: ${{ vars.GOOGLE_CLOUD_WORKLOAD_IDENTITY_PROVIDER }}=
-          service_account: ${{ vars.GOOGLE_CLOUD_OIDC_ACCOUNT }}
+          workload_identity_provider: ${{ secrets.GOOGLE_CLOUD_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GOOGLE_CLOUD_OIDC_ACCOUNT }}
 
       - run: gcloud auth configure-docker asia-northeast1-docker.pkg.dev
       - run: docker build --build-arg="MODULE_PATH_TO_EXECUTE=main" -t ${CONTAINER_NAME} .
