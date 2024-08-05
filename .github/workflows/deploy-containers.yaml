@@ -29,8 +29,8 @@ jobs:
       - uses: google-github-actions/auth@v2
         with:
           token_format: "access_token"
-          workload_identity_provider: ${{ secrets.GOOGLE_CLOUD_WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ secrets.GOOGLE_CLOUD_OIDC_ACCOUNT }}
+          workload_identity_provider: '${{ secrets.GOOGLE_CLOUD_WORKLOAD_IDENTITY_PROVIDER }}'
+          service_account: '${{ secrets.GOOGLE_CLOUD_OIDC_ACCOUNT }}'
 
       - run: gcloud auth configure-docker asia-northeast1-docker.pkg.dev
       - run: docker build --build-arg="MODULE_PATH_TO_EXECUTE=main" -t ${CONTAINER_NAME} .
