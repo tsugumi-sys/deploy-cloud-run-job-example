@@ -1,4 +1,4 @@
-name: google cloud
+name: google cloud push container image
 
 on:
   push:
